@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>DBContract.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DBContract.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">sample3</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">provider</span><span class="s2">.</span><span class="s1">BaseColumns</span><span class="s2">;</span>
+
+<span class="s3">// データベースのテーブル名・項目名を定義</span>
+<span class="s0">public final class </span><span class="s1">DBContract </span><span class="s2">{</span>
+
+    <span class="s3">// 誤ってインスタンス化しないようにコンストラクタをプライベート宣言</span>
+    <span class="s0">private </span><span class="s1">DBContract</span><span class="s2">() {</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// テーブルの内容を定義</span>
+    <span class="s0">public static class </span><span class="s1">DBEntry </span><span class="s0">implements </span><span class="s1">BaseColumns </span><span class="s2">{</span>
+        <span class="s3">// BaseColumns インターフェースを実装することで、内部クラスは_IDを継承できる</span>
+        <span class="s0">public static final </span><span class="s1">String TABLE_NAME </span><span class="s2">= </span><span class="s4">&quot;tbl&quot;</span><span class="s2">;</span>
+        <span class="s0">public static final </span><span class="s1">String COLUMN_NAME_TITLE </span><span class="s2">= </span><span class="s4">&quot;title&quot;</span><span class="s2">;</span>
+        <span class="s0">public static final </span><span class="s1">String COLUMN_NAME_CONTENTS </span><span class="s2">= </span><span class="s4">&quot;contents&quot;</span><span class="s2">;</span>
+        <span class="s0">public static final </span><span class="s1">String COLUMN_NAME_UPDATE </span><span class="s2">= </span><span class="s4">&quot;up_date&quot;</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+<span class="s2">}</span>
+
+
+
+</pre>
+</body>
+</html>

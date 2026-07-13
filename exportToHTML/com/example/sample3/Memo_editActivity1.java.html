@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>Memo_editActivity1.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Memo_editActivity1.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">sample3</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Button</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">ImageButton</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">fragment</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">Fragment</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">fragment</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">FragmentManager</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">Memo_editActivity1 </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s2">{</span>
+
+    <span class="s3">//メンバ</span>
+    <span class="s0">private boolean </span><span class="s1">isFragmentVisible </span><span class="s2">= </span><span class="s0">false</span><span class="s2">; </span><span class="s3">// 状態を管理する変数</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">Bundle savedInstanceState</span><span class="s2">) {</span>
+
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">);</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">memo_edit</span><span class="s2">);</span>
+
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">savedInstanceState </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">getSupportFragmentManager</span><span class="s2">().</span><span class="s1">beginTransaction</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">setReorderingAllowed</span><span class="s2">(</span><span class="s0">true</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">fragment_container_memo1</span><span class="s2">, </span><span class="s1">FragmentB_memo</span><span class="s2">.</span><span class="s0">class</span><span class="s2">, </span><span class="s0">null</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">commit</span><span class="s2">();</span>
+        <span class="s2">}</span>
+
+        <span class="s3">//imageButtonを押したとき、フラグメントを見て状況に応じて表示する</span>
+        <span class="s1">ImageButton toggleFragmentButton </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">imageButton_memoedit</span><span class="s2">);</span>
+        <span class="s1">toggleFragmentButton</span><span class="s2">.</span><span class="s1">setOnClickListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">View</span><span class="s2">.</span><span class="s1">OnClickListener</span><span class="s2">() {</span>
+
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onClick</span><span class="s2">(</span><span class="s1">View v</span><span class="s2">) {</span>
+                <span class="s1">FragmentManager fragmentManager </span><span class="s2">= </span><span class="s1">getSupportFragmentManager</span><span class="s2">();</span>
+                <span class="s1">Fragment currentFragment </span><span class="s2">= </span><span class="s1">fragmentManager</span><span class="s2">.</span><span class="s1">findFragmentById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">fragment_container_memo2</span><span class="s2">);</span>
+
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">currentFragment </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+                    <span class="s3">// 表示：フラグメントを追加</span>
+                    <span class="s1">fragmentManager</span><span class="s2">.</span><span class="s1">beginTransaction</span><span class="s2">()</span>
+                            <span class="s2">.</span><span class="s1">setReorderingAllowed</span><span class="s2">(</span><span class="s0">true</span><span class="s2">)</span>
+                            <span class="s2">.</span><span class="s1">replace</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">fragment_container_memo2</span><span class="s2">, </span><span class="s1">Fragment_menu</span><span class="s2">.</span><span class="s0">class</span><span class="s2">, </span><span class="s0">null</span><span class="s2">)</span>
+                            <span class="s2">.</span><span class="s1">commit</span><span class="s2">();</span>
+                    <span class="s1">isFragmentVisible </span><span class="s2">= </span><span class="s0">true</span><span class="s2">;</span>
+                <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                    <span class="s3">// 非表示：フラグメントを削除</span>
+                    <span class="s1">fragmentManager</span><span class="s2">.</span><span class="s1">beginTransaction</span><span class="s2">()</span>
+                            <span class="s2">.</span><span class="s1">remove</span><span class="s2">(</span><span class="s1">currentFragment</span><span class="s2">)</span>
+                            <span class="s2">.</span><span class="s1">commit</span><span class="s2">();</span>
+                    <span class="s1">isFragmentVisible </span><span class="s2">= </span><span class="s0">false</span><span class="s2">;</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+
+        <span class="s2">});</span>
+
+
+    <span class="s2">}</span>
+
+
+<span class="s2">}</span></pre>
+</body>
+</html>

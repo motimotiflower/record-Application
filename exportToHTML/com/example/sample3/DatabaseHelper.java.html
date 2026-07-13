@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>DatabaseHelper.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #2aacb8;}
+.s5 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DatabaseHelper.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">sample3</span><span class="s2">;</span>
+
+<span class="s0">import static </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">sample3</span><span class="s2">.</span><span class="s1">DBContract</span><span class="s2">.</span><span class="s1">DBEntry</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Context</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">database</span><span class="s2">.</span><span class="s1">sqlite</span><span class="s2">.</span><span class="s1">SQLiteDatabase</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">database</span><span class="s2">.</span><span class="s1">sqlite</span><span class="s2">.</span><span class="s1">SQLiteOpenHelper</span><span class="s2">;</span>
+
+<span class="s3">// データベースをアプリから使用するために、 SQLiteOpenHelperを継承する</span>
+<span class="s3">// SQLiteOpenHelperは、データベースやテーブルが存在する場合はそれを開き、存在しない場合は作成してくれる</span>
+<span class="s0">public class </span><span class="s1">DatabaseHelper </span><span class="s0">extends </span><span class="s1">SQLiteOpenHelper </span><span class="s2">{</span>
+
+    <span class="s3">// データベースのバージョン</span>
+    <span class="s3">// テーブルの内容などを変更したら、この数字を変更する</span>
+    <span class="s0">static final private int </span><span class="s1">VERSION </span><span class="s2">= </span><span class="s4">1</span><span class="s2">;</span>
+
+    <span class="s3">// データベース名</span>
+    <span class="s0">static final private </span><span class="s1">String DBNAME </span><span class="s2">= </span><span class="s5">&quot;memo.db&quot;</span><span class="s2">;</span>
+
+    <span class="s3">// コンストラクタ</span>
+    <span class="s0">public </span><span class="s1">DatabaseHelper</span><span class="s2">(</span><span class="s1">Context context</span><span class="s2">) {</span>
+        <span class="s3">// 親クラスのコンストラクタを呼ぶ</span>
+        <span class="s0">super</span><span class="s2">(</span><span class="s1">context</span><span class="s2">, </span><span class="s1">DBNAME</span><span class="s2">, </span><span class="s0">null</span><span class="s2">, </span><span class="s1">VERSION</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">//SQL 定義</span>
+    <span class="s1">@Override</span>
+    <span class="s3">// データベース作成時にテーブルを作成</span>
+    <span class="s0">public void </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">SQLiteDatabase db</span><span class="s2">) {</span>
+
+        <span class="s3">// テーブルを作成</span>
+        <span class="s1">db</span><span class="s2">.</span><span class="s1">execSQL</span><span class="s2">(</span>
+                <span class="s5">&quot;CREATE TABLE &quot; </span><span class="s2">+ </span><span class="s1">DBEntry</span><span class="s2">.</span><span class="s1">TABLE_NAME </span><span class="s2">+ </span><span class="s5">&quot; (&quot; </span><span class="s2">+</span>
+                        <span class="s1">DBEntry</span><span class="s2">.</span><span class="s1">_ID </span><span class="s2">+ </span><span class="s5">&quot; INTEGER PRIMARY KEY, &quot; </span><span class="s2">+</span>
+                        <span class="s1">DBEntry</span><span class="s2">.</span><span class="s1">COLUMN_NAME_TITLE </span><span class="s2">+ </span><span class="s5">&quot; TEXT default 'タイトル', &quot; </span><span class="s2">+</span>
+                        <span class="s1">DBEntry</span><span class="s2">.</span><span class="s1">COLUMN_NAME_CONTENTS </span><span class="s2">+ </span><span class="s5">&quot; TEXT default '', &quot; </span><span class="s2">+</span>
+                        <span class="s1">DBEntry</span><span class="s2">.</span><span class="s1">COLUMN_NAME_UPDATE </span><span class="s2">+ </span><span class="s5">&quot; INTEGER DEFAULT (datetime(CURRENT_TIMESTAMP,'localtime'))) &quot;</span><span class="s2">);</span>
+
+        <span class="s3">// トリガーを作成</span>
+        <span class="s1">db</span><span class="s2">.</span><span class="s1">execSQL</span><span class="s2">(</span>
+                <span class="s5">&quot;CREATE TRIGGER trigger_samp_tbl_update AFTER UPDATE ON &quot; </span><span class="s2">+ </span><span class="s1">DBEntry</span><span class="s2">.</span><span class="s1">TABLE_NAME </span><span class="s2">+</span>
+                        <span class="s5">&quot; BEGIN &quot; </span><span class="s2">+</span>
+                        <span class="s5">&quot; UPDATE &quot; </span><span class="s2">+ </span><span class="s1">DBEntry</span><span class="s2">.</span><span class="s1">TABLE_NAME </span><span class="s2">+ </span><span class="s5">&quot; SET up_date = DATETIME('now', 'localtime') WHERE rowid == NEW.rowid; &quot; </span><span class="s2">+</span>
+                        <span class="s5">&quot; END;&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s3">// データベースをバージョンアップした時、テーブルを削除してから再作成</span>
+    <span class="s0">public void </span><span class="s1">onUpgrade</span><span class="s2">(</span><span class="s1">SQLiteDatabase db</span><span class="s2">, </span><span class="s0">int </span><span class="s1">oldVersion</span><span class="s2">, </span><span class="s0">int </span><span class="s1">newVersion</span><span class="s2">) {</span>
+        <span class="s3">//db.execSQL(&quot;DROP TABLE IF EXISTS &quot; + DBEntry.TABLE_NAME);</span>
+        <span class="s3">//onCreate(db);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+</pre>
+</body>
+</html>

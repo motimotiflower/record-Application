@@ -1,0 +1,51 @@
+<resources>
+
+    <!--テンプレート-->
+    <!-->  <string name = ""> </string>  <-->
+
+    <!--アプリの名前-->
+    <string name="app_name">memo Application</string>
+
+    <!--メモ-->
+    <string name="memo_list"> メモの一覧 </string>
+    <string name="memo_make"> メモの作成 </string>
+    <string name="memo_delete"> 削除 </string>
+    <string name="memo_create"> 新しいメモ </string>
+
+    <!--to do-->
+    <string name="todo_list"> タスクの一覧 </string>
+    <string name="todo_make"> タスクの作成 </string>
+    <string name="todo_delete"> 削除 </string>
+    <string name="todo_create"> 新しいタスク </string>
+
+    <!-- cat -->
+    <string name="cat_list"> カテゴリ </string>
+    <string name="cat_select"> カテゴリの選択 </string>
+    <string name="cat_make"> カテゴリの作成 </string>
+
+    <!--file-->
+    <string name="file_list"> ファイル </string>
+    <string name="file_select"> ファイルの選択 </string>
+    <string name="file_make"> ファイルの作成 </string>
+
+    <!--ボタン関連-->
+    <string name="delete">削除</string>
+    <string name="decide">決定</string>
+    <string name="Yes">はい</string>
+    <string name="No">いいえ</string>
+    <string name="Home_record">記録</string>
+
+    <!--そのほか-->
+    <string name="setting"> 設定 </string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_activity_main3">MainActivity3</string>
+    <string name="delete_check">削除しますか？</string>
+
+    <!--Sqlite name-->
+
+    <!--ユーザ補助機能-->
+    <string name="text">テキストを入力</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
